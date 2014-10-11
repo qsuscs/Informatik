@@ -1,0 +1,55 @@
+object MainForm: TMainForm
+  Left = 400
+  Height = 240
+  Top = 1036
+  Width = 320
+  Caption = 'Stopwatch'
+  ClientHeight = 240
+  ClientWidth = 320
+  OnClose = FormClose
+  OnCreate = FormCreate
+  LCLVersion = '1.2.4.0'
+  object shBody: TShape
+    Left = 112
+    Height = 96
+    Top = 48
+    Width = 96
+    Shape = stCircle
+  end
+  object shStop: TShape
+    Left = 152
+    Height = 16
+    Top = 32
+    Width = 16
+    Brush.Color = clRed
+    OnMouseDown = shStopMouseDown
+    Shape = stCircle
+  end
+  object shReset: TShape
+    Left = 96
+    Height = 16
+    Top = 88
+    Width = 16
+    Brush.Color = clBlack
+    OnMouseDown = shResetMouseDown
+    Shape = stCircle
+  end
+  object shStart: TShape
+    Left = 208
+    Height = 16
+    Top = 88
+    Width = 16
+    Brush.Color = clLime
+    OnMouseDown = shStartMouseDown
+    Shape = stCircle
+  end
+  object lResult: TLabel
+    Left = 139
+    Height = 14
+    Top = 88
+    Width = 46
+    Anchors = [akTop]
+    Caption = 'Stopped'
+    ParentColor = False
+  end
+end
