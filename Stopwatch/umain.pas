@@ -29,6 +29,7 @@ type
   private
     { private declarations }
     watch1: TStopwatch;
+    watch2: TStopwatch;
   public
     { public declarations }
   end;
@@ -59,11 +60,16 @@ end;
 procedure TMainForm.FormCreate(Sender: TObject);
 begin
   watch1 := TStopwatch.Create;
+  watch2 := TStopwatch.Create;
+  watch2.Start;
 end;
 
 procedure TMainForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 begin
   watch1.Free;
+  watch2.Stop;
+  showmessage(FloatToStr(watch2.GetRuntime));
+  watch2.Free;
 end;
 
 procedure TMainForm.shResetMouseDown(Sender: TObject; Button: TMouseButton;
