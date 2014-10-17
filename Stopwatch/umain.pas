@@ -47,7 +47,10 @@ procedure TMainForm.shStartMouseDown(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
 begin
   watch1.Start;
-  lResult.Caption := 'Running';
+  while watch1.isActive do begin
+    lResult.Caption := format('%4.3f', [watch1.Now]);
+    Application.ProcessMessages;
+  end;
 end;
 
 procedure TMainForm.shStopMouseDown(Sender: TObject; Button: TMouseButton;
