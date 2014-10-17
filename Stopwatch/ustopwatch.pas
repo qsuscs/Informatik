@@ -18,6 +18,7 @@ type
       procedure Stop;
       procedure Reset;
       function GetRuntime: Real; // Time in s between start and stop
+      function Now: Real; // Current time in s
   end;
 
 implementation
@@ -58,6 +59,15 @@ end;
 function TStopwatch.GetRuntime: Real;
 begin
   result := (tStop - tStart) / 1000;
+end;
+
+function TStopwatch.Now: Real;
+begin
+  if active then begin
+    result := (LCLIntf.GetTickCount - tStart) / 1000;
+  end else begin
+    result := 0;
+  end;
 end;
 
 end.
