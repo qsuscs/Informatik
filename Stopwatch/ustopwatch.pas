@@ -19,6 +19,7 @@ type
       procedure Reset;
       function GetRuntime: Real; // Time in s between start and stop
       function Now: Real; // Current time in s
+      property isActive: Boolean read active;
   end;
 
 implementation
