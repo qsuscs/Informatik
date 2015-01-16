@@ -1,0 +1,51 @@
+object fBalloon: TfBalloon
+  Left = 1761
+  Height = 411
+  Top = 144
+  Width = 527
+  Caption = 'Balloon'
+  ClientHeight = 411
+  ClientWidth = 527
+  OnCreate = FormCreate
+  LCLVersion = '1.2.4.0'
+  object Pbox: TPaintBox
+    Left = 8
+    Height = 401
+    Top = 8
+    Width = 401
+  end
+  object btStart: TButton
+    Left = 432
+    Height = 25
+    Top = 24
+    Width = 75
+    Caption = 'Start'
+    OnClick = btStartClick
+    TabOrder = 0
+  end
+  object btReset: TButton
+    Left = 432
+    Height = 25
+    Top = 88
+    Width = 75
+    Caption = 'Reset'
+    OnClick = btResetClick
+    TabOrder = 1
+  end
+  object btStop: TButton
+    Left = 432
+    Height = 25
+    Top = 56
+    Width = 75
+    Caption = 'Stop'
+    OnClick = btStopClick
+    TabOrder = 2
+  end
+  object tm: TTimer
+    Enabled = False
+    Interval = 50
+    OnTimer = tmTimer
+    left = 464
+    top = 200
+  end
+end
