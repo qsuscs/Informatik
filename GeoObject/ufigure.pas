@@ -8,7 +8,7 @@ type
   TFigure = class(TObject)
     protected
       Canvas: TCanvas;
-      xM, yM, d: Integer; // Don’t make r public, else r < 0 would be possible
+      xP, yP, d: Integer; // Don’t make r public, else r < 0 would be possible
       procedure setD(new: Integer);
       procedure setM(new: TPoint);
       function getM: TPoint;
@@ -137,7 +137,7 @@ end;
 // TSquare
 procedure TSquare.construct;
 begin
-  Canvas.Rectangle(xM - d div 2, yM - d div 2, xM + d div 2, yM + d div 2);
+  Canvas.Rectangle(xP - d div 2, yP - d div 2, xP + d div 2, yP + d div 2);
 end;
 
 procedure TSquare.draw;
@@ -157,8 +157,8 @@ end;
 procedure TSquare.move(dX, dY: Integer);
 begin
   delete;
-  xM += dX;
-  yM += dY;
+  xP += dX;
+  yP += dY;
   draw;
 end;
 
@@ -166,7 +166,7 @@ end;
 // TCircle
 procedure TCircle.construct;
 begin
-  Canvas.EllipseC(xM, yM, d, d);
+  Canvas.EllipseC(xP, yP, d, d);
 end;
 
 procedure TCircle.draw;
@@ -186,8 +186,8 @@ end;
 procedure TCircle.move(dX,dY: Integer);
 begin
   delete;
-  xM += dX;
-  yM += dY;
+  xP += dX;
+  yP += dY;
   draw;
 end;
 
@@ -200,8 +200,8 @@ begin
   // Initialization
   Canvas := iCanvas;
   color := iColor;
-  xM := ixM;
-  yM := iyM;
+  xP := ixM;
+  yP := iyM;
   d := max(iD, 0); // no negative values
 end;
 
@@ -216,13 +216,13 @@ end;
 
 procedure TFigure.setM(new: TPoint);
 begin
-  xM:=new.X;
-  yM:=new.Y;
+  xP := new.X;
+  yP := new.Y;
 end;
 
 function TFigure.getM: TPoint;
 begin
-  Result := point(xM, yM);
+  Result := point(xP, yP);
 end;
 
 end.
