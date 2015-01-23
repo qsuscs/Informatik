@@ -5,18 +5,25 @@ interface
 uses Graphics, Types, Math;
 
 type
-  TFigure = class(TObject)
+  TGeoObject = class(TObject)
     protected
       Canvas: TCanvas;
-      xP, yP, d: Integer; // Don’t make r public, else r < 0 would be possible
-      procedure setD(new: Integer);
-      procedure setM(new: TPoint);
-      function getM: TPoint;
+      xP, yP: Integer;
+      procedure setP(new: TPoint);
+      function getP: TPoint;
     public
       color: TColor;
+      constructor create(iCanvas: TCanvas; iColor: TColor; ixP, iyP: Integer);
+  end;
+
+  TFigure = class(TGeoObject)
+    protected
+      d: Integer; // Don’t make d public, else d < 0 would be possible
+      procedure setD(new: Integer);
+    public
       constructor create(iCanvas: TCanvas; iColor: TColor;
-        ixM, iyM, iD: Integer);
-      property Center: TPoint read getM write setM;
+        ixP, iyP, iD: Integer);
+      property Center: TPoint read getP write setP;
   end;
 
   TCircle = class(TFigure)
@@ -194,14 +201,9 @@ end;
 
 // TFigure
 constructor TFigure.create(iCanvas: TCanvas; iColor: TColor;
-  ixM, iyM, iD: Integer);
+  ixP, iyP, iD: Integer);
 begin
-  inherited create;
-  // Initialization
-  Canvas := iCanvas;
-  color := iColor;
-  xP := ixM;
-  yP := iyM;
+  inherited create(iCanvas, iColor, ixP, iyP);
   d := max(iD, 0); // no negative values
 end;
 
@@ -214,13 +216,24 @@ begin
   end;
 end;
 
-procedure TFigure.setM(new: TPoint);
+// TGeoObject
+constructor TGeoObject.create(iCanvas: TCanvas; iColor: TColor;
+  ixP, iyP: Integer);
+begin
+  inherited create;
+  Canvas := iCanvas;
+  color := iColor;
+  xP := ixP;
+  yP := iyP;
+end;
+
+procedure TGeoObject.setP(new: TPoint);
 begin
   xP := new.X;
   yP := new.Y;
 end;
 
-function TFigure.getM: TPoint;
+function TGeoObject.getP: TPoint;
 begin
   Result := point(xP, yP);
 end;
